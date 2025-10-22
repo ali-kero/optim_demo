@@ -1,0 +1,35 @@
+# Databricks Asset Bundle configuration
+bundle:
+  name: optim_demo
+
+include:
+  - resources/*.yml
+
+# Variables that can be overridden
+variables:
+  cluster_name:
+    description: Name of the cluster to use
+    default: shared-autoscaling
+
+workspace:
+  host: ${DATABRICKS_HOST}
+  
+targets:
+  # Development target
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: ${DATABRICKS_HOST}
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    
+  # Production target  
+  prod:
+    mode: production
+    workspace:
+      host: ${DATABRICKS_HOST}
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      # Run as service principal in production
+      service_principal_name: ${var.service_principal_name}
+
