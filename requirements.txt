@@ -1,0 +1,10 @@
+# Core Databricks dependencies (usually pre-installed in Databricks clusters)
+pyspark>=3.3.0
+pandas>=1.5.0
+numpy>=1.23.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Additional analysis tools
+scikit-learn>=1.2.0
+
