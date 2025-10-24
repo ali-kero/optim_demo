@@ -31,9 +31,11 @@ databricks configure --token
 ## Contents
 
 - `sample_notebook.py` - A sample Databricks notebook demonstrating basic Spark operations, data analysis, and visualization
+- `debug_example.py` - Example notebook showing how to debug code with breakpoints
 - `SETUP_GUIDE.md` - **Complete guide for setting up local development with debugging**
+- `WORKSPACE_AUTH_GUIDE.md` - **Guide for connecting to multiple Databricks workspaces with OAuth**
 - `.vscode/` - VS Code configuration for Databricks development
-- `databricks.yml` - Databricks Asset Bundle configuration
+- `databricks.yml` - Databricks Asset Bundle configuration for multiple workspaces
 
 ## Prerequisites
 

@@ -102,12 +102,12 @@ def process_employee_data(df):
         F.count("name").alias("employee_count")
     )
     
-    # Join back to original
+    # Join back to original (using column name for simpler join)
     result = df_with_groups.join(
-        dept_stats.withColumnRenamed("department", "dept_key"),
-        df_with_groups.department == dept_stats.dept_key,
-        "left"
-    ).drop("dept_key")
+        dept_stats,
+        on="department",
+        how="left"
+    )
     
     return result  # <- Set breakpoint here to inspect final result
 
@@ -161,22 +161,9 @@ print(f"Average age: {avg_age:.1f}")
 print("Debug checkpoint - inspect variables in VS Code!")
 
 # COMMAND ----------
+df.write.format("delta").mode("overwrite").saveAsTable("ali_karaouzene.default.dbconnect_test")
 
-# MAGIC %md
-# MAGIC ## Tips for Effective Debugging
-# MAGIC 
-# MAGIC 1. **Use Breakpoints**: Click left of line numbers to set breakpoints
-# MAGIC 2. **Step Through Code**: Use F10 (step over) and F11 (step into)
-# MAGIC 3. **Watch Variables**: Add variables to the Watch panel
-# MAGIC 4. **Evaluate Expressions**: Use the Debug Console to run code
-# MAGIC 5. **Conditional Breakpoints**: Right-click breakpoint for conditions
-# MAGIC 6. **Log Points**: Add log messages without modifying code
-# MAGIC 
-# MAGIC ## Keyboard Shortcuts
-# MAGIC - `F5`: Start debugging
-# MAGIC - `F9`: Toggle breakpoint
-# MAGIC - `F10`: Step over
-# MAGIC - `F11`: Step into
-# MAGIC - `Shift+F11`: Step out
-# MAGIC - `Shift+F5`: Stop debugging
 
+
+
+# COMMAND ----------

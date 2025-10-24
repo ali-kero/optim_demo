@@ -11,25 +11,20 @@ variables:
     description: Name of the cluster to use
     default: shared-autoscaling
 
-workspace:
-  host: ${DATABRICKS_HOST}
-  
 targets:
-  # Development target
-  dev:
+  # Development target - uses DEFAULT profile
+  field-eng-azure:
     mode: development
-    default: true
     workspace:
-      host: ${DATABRICKS_HOST}
+      host: https://adb-984752964297111.11.azuredatabricks.net/
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
-    
-  # Production target  
+
+  # Production target
   prod:
     mode: production
     workspace:
-      host: ${DATABRICKS_HOST}
+      host: https://adb-984752964297111.11.azuredatabricks.net/
       root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
     run_as:
       # Run as service principal in production
       service_principal_name: ${var.service_principal_name}
-
