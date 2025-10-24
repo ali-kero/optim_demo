@@ -27,6 +27,8 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.metals/
+.scala-build/
 
 # Jupyter Notebook
 .ipynb_checkpoints
